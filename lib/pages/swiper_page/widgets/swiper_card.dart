@@ -1,17 +1,17 @@
 import 'dart:math';
 
+import 'package:ai_drink/models/drink/drink.dart';
+import 'package:ai_drink/store/card_slice.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../provider/card_provider.dart';
-
 class SwiperCard extends StatefulWidget {
-  final String urlImage;
+  final Drink drink;
   final bool isFront;
 
   const SwiperCard({
     Key? key,
-    required this.urlImage,
+    required this.drink,
     required this.isFront,
   }) : super(key: key);
 
@@ -26,7 +26,7 @@ class _SwiperCardState extends State<SwiperCard> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final size = MediaQuery.of(context).size;
 
-      final provider = Provider.of<CardProvider>(context, listen: false);
+      final provider = Provider.of<CardSlice>(context, listen: false);
       provider.setScreenSize(size);
     });
   }
@@ -36,10 +36,12 @@ class _SwiperCardState extends State<SwiperCard> {
         child: widget.isFront ? buildFrontCard() : buildCard(),
       );
 
+  //TODO move into a new component
+  //Wrap with consumer
   Widget buildFrontCard() => GestureDetector(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final provider = Provider.of<CardProvider>(context);
+            final provider = Provider.of<CardSlice>(context);
             final milliseconds = provider.isDragging ? 0 : 400;
             final position = provider.position;
 
@@ -58,27 +60,30 @@ class _SwiperCardState extends State<SwiperCard> {
           },
         ),
         onPanStart: (details) {
-          final provider = Provider.of<CardProvider>(context, listen: false);
+          final provider = Provider.of<CardSlice>(context, listen: false);
           provider.startPosition(details);
         },
         onPanUpdate: (details) {
-          final provider = Provider.of<CardProvider>(context, listen: false);
+          final provider = Provider.of<CardSlice>(context, listen: false);
           provider.updatePosition(details);
         },
         onPanEnd: (details) {
-          final provider = Provider.of<CardProvider>(context, listen: false);
+          final provider = Provider.of<CardSlice>(context, listen: false);
           provider.endPosition();
         },
       );
 
+  //TODO move into a new component
+  //Wrap with consumer
   Widget buildCard() => ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: NetworkImage(widget.urlImage),
-                fit: BoxFit.cover,
-                alignment: Alignment(-0.3, 0)),
+              image: NetworkImage(widget.drink.imagePath),
+              fit: BoxFit.cover,
+              alignment: Alignment(-0.3, 0),
+            ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -92,11 +97,12 @@ class _SwiperCardState extends State<SwiperCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Whiskey Malibu pro",
+                          widget.drink.name,
                           style: TextStyle(
-                              fontSize: 40,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
+                            fontSize: 40,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Row(
                           children: [

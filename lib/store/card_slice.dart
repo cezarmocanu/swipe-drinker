@@ -1,27 +1,30 @@
-import 'package:ai_drink/models/drink.dart';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:ai_drink/models/drink/drink.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import '../services/drink_service.dart';
 
 enum CardStatus { like, dislike }
 
-class CardProvider extends ChangeNotifier {
-  final DrinkService drinkService = DrinkService();
+class CardSlice extends ChangeNotifier {
+  final DrinkService _drinkService = DrinkService();
 
-  List<String> _urlImages = [];
+  List<Drink> _drinks = [];
   bool _isDragging = false;
   double _angle = 0;
   Offset _position = Offset.zero;
   Size _screenSize = Size.zero;
 
-  List<String> get urlImages => _urlImages;
+  List<Drink> get drinks => _drinks;
   bool get isDragging => _isDragging;
   Offset get position => _position;
   double get angle => _angle;
 
-  CardProvider() {
-    drinkService.getDrinksList().then((values) => print(values));
-    resetUsers();
+  CardSlice() {
+    getCards();
   }
 
   void setScreenSize(Size screenSize) => _screenSize = screenSize;
@@ -91,22 +94,23 @@ class CardProvider extends ChangeNotifier {
   }
 
   Future _nextCard() async {
-    if (_urlImages.isEmpty) return;
+    //TODO add page load
+    if (_drinks.isEmpty) return;
 
     await Future.delayed(Duration(milliseconds: 200));
-    _urlImages.removeLast();
+    _drinks.removeLast();
     resetPosition();
   }
 
-  void resetUsers() {
-    _urlImages = <String>[
-      'https://www.acouplecooks.com/wp-content/uploads/2020/11/Pina-Colada-050-735x919.jpg',
-      'https://www.homemadefoodjunkie.com/wp-content/uploads/2019/05/R-W-B.jpg',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRgveF6kJviLU9mn1_EmmejYW9XLfH__K0Fw&usqp=CAU',
-      'https://insanelygoodrecipes.com/wp-content/uploads/2021/05/Refreshing-Sour-Cocktail-with-Cherry-on-Top-800x530.png',
-      'https://insanelygoodrecipes.com/wp-content/uploads/2021/09/Cold-Purple-Blackberry-Mojitos-with-Fresh-Berries-683x1024.jpg',
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSqAvIb3jZkXNlQROs23UH79-DX2R94eIVqg&usqp=CAU',
-    ].reversed.toList();
+  void getCards() async {
+    Response r = await _drinkService.getDrinksList();
+
+    if (r.statusCode == HttpStatus.ok) {
+      final valuesList = (json.decode(r.body) as List).map((el) => Drink.fromJson(el)).toList();
+      _drinks = valuesList;
+    } else {
+      _drinks = [];
+    }
 
     notifyListeners();
   }
