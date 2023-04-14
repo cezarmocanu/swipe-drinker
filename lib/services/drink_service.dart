@@ -1,8 +1,7 @@
 import 'dart:io';
 
+import 'package:ai_drink/constants/api.dart';
 import 'package:http/http.dart';
-
-import '../constants/api.dart';
 
 class DrinkService {
   Future<Response> getDrinksList() async {
