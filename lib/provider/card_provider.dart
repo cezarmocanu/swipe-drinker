@@ -1,8 +1,13 @@
+import 'package:ai_drink/models/drink.dart';
 import 'package:flutter/material.dart';
+
+import '../services/drink_service.dart';
 
 enum CardStatus { like, dislike }
 
 class CardProvider extends ChangeNotifier {
+  final DrinkService drinkService = DrinkService();
+
   List<String> _urlImages = [];
   bool _isDragging = false;
   double _angle = 0;
@@ -15,6 +20,7 @@ class CardProvider extends ChangeNotifier {
   double get angle => _angle;
 
   CardProvider() {
+    drinkService.getDrinksList().then((values) => print(values));
     resetUsers();
   }
 

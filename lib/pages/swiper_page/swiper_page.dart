@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:ai_drink/pages/swiper_page/widgets/swiper_card.dart';
+import 'package:ai_drink/services/drink_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
