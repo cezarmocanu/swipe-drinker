@@ -1,3 +1,4 @@
+import 'package:ai_drink/pages/bar_page/bar_page.dart';
 import 'package:ai_drink/pages/swiper_page/swiper_page.dart';
 import 'package:ai_drink/store/card_slice.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => SwiperPage(),
-          '/newpage': (context) => SwiperPage(), // Add this line
+          "/bar": (context) => BarPage(), // Add this line
         },
       ),
     );
