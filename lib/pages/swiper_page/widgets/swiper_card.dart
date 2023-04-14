@@ -23,7 +23,7 @@ class _SwiperCardState extends State<SwiperCard> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       final size = MediaQuery.of(context).size;
 
       final provider = Provider.of<CardProvider>(context, listen: false);
