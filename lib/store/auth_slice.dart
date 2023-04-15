@@ -17,7 +17,9 @@ class AuthSlice extends ChangeNotifier {
 
   UserIdentityGetDto get userIdentity => _userIdentity;
 
-  AuthSlice() {}
+  AuthSlice() {
+    init();
+  }
 
   void init() async {
     String? _deviceId = await PlatformDeviceId.getDeviceId;
