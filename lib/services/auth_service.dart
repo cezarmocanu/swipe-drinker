@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:ai_drink/constants/api.dart';
+import 'package:ai_drink/constants/headers.dart';
 import 'package:ai_drink/models/auth/auth_identity_request_dto/auth_identity_request_dto.dart';
 import 'package:http/http.dart';
 
@@ -13,7 +14,7 @@ class AuthService {
       response = await post(
         Uri.parse(Api.authSignup),
         headers: {
-          "Content-Type": "application/json",
+          ...Headers.contentTypeJson,
         },
         body: json.encode(
           AuthIdentityRequestDto(id: platformId),
