@@ -1,3 +1,4 @@
+import 'package:ai_drink/constants/routes.dart';
 import 'package:ai_drink/pages/auth_page/auth_page.dart';
 import 'package:ai_drink/pages/bar_page/bar_page.dart';
 import 'package:ai_drink/pages/swiper_page/swiper_page.dart';
@@ -27,11 +28,11 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         title: 'Swipe Drinker',
-        initialRoute: '/',
+        initialRoute: Routes.auth,
         routes: {
-          '/': (context) => AuthPage(),
-          '/swipe': (context) => SwiperPage(),
-          "/bar": (context) => BarPage(), // Add this line
+          Routes.auth: (context) => AuthPage(),
+          Routes.swiper: (context) => SwiperPage(),
+          Routes.bar: (context) => BarPage(),
         },
       ),
     );

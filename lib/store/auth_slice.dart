@@ -12,9 +12,9 @@ import 'package:platform_device_id/platform_device_id.dart';
 class AuthSlice extends ChangeNotifier {
   final AuthService _authService = AuthService();
   final SharedPreferencesService _preferencesService = SharedPreferencesService();
-  late UserIdentity _userIdentity;
+  UserIdentity? _userIdentity;
 
-  UserIdentity get userIdentity => _userIdentity;
+  UserIdentity? get userIdentity => _userIdentity;
 
   AuthSlice() {
     init();
