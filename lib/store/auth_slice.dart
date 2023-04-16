@@ -8,8 +8,10 @@ import 'package:ai_drink/services/shared_preferences_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:simple_logger/simple_logger.dart';
 
 class AuthSlice extends ChangeNotifier {
+  final logger = SimpleLogger();
   final AuthService _authService = AuthService();
   final SharedPreferencesService _preferencesService = SharedPreferencesService();
   UserIdentity? _userIdentity;
@@ -44,7 +46,7 @@ class AuthSlice extends ChangeNotifier {
       return AuthIdentityResponseDto.fromJson(json.decode(r.body));
     } else {
       //TODO add logger
-      print("[AuthSlice][Error]${String.fromCharCodes(r.bodyBytes)}");
+      logger.warning("[AuthSlice]${String.fromCharCodes(r.bodyBytes)}");
       return null;
     }
   }

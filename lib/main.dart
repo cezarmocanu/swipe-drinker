@@ -1,9 +1,8 @@
 import 'package:ai_drink/constants/routes.dart';
 import 'package:ai_drink/pages/auth_page/auth_page.dart';
-import 'package:ai_drink/pages/bar_page/bar_page.dart';
-import 'package:ai_drink/pages/swiper_page/swiper_page.dart';
 import 'package:ai_drink/store/auth_slice.dart';
 import 'package:ai_drink/store/card_slice.dart';
+import 'package:ai_drink/widgets/main_bottom_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,8 +30,7 @@ class _MyAppState extends State<MyApp> {
         initialRoute: Routes.auth,
         routes: {
           Routes.auth: (context) => AuthPage(),
-          Routes.swiper: (context) => SwiperPage(),
-          Routes.bar: (context) => BarPage(),
+          Routes.mainNavigation: (context) => MainBottomNavigator(),
         },
       ),
     );

@@ -33,6 +33,7 @@ dependencies:
   http: ^0.13.3
   shared_preferences: ^2.1.0
   flutter_launcher_icons: ^0.10.0
+  simple_logger: ^1.9.0+2
   flutter:
     sdk: flutter
 

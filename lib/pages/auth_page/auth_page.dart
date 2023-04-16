@@ -18,7 +18,7 @@ class _AuthPageState extends State<AuthPage> {
       builder: (context, authSlice, _) {
         if (authSlice.userIdentity != null) {
           Future.delayed(Duration.zero, () {
-            Navigator.pushNamedAndRemoveUntil(context, Routes.swiper, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(context, Routes.mainNavigation, (route) => false);
           });
         }
 

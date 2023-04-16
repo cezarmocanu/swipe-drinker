@@ -11,42 +11,40 @@ class BarPage extends StatefulWidget {
 class _BarPageState extends State<BarPage> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-              SizedBox(
-                height: 20,
-              ),
-              DrinkCard(),
-            ],
-          ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+            SizedBox(
+              height: 20,
+            ),
+            DrinkCard(),
+          ],
         ),
       ),
     );
