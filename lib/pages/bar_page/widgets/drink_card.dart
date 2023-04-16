@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class DrinkCard extends StatefulWidget {
@@ -48,8 +47,7 @@ class _DrinkCardState extends State<DrinkCard> {
                         SizedBox(width: 5),
                         Text(
                           "232,323",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),

@@ -1,9 +1,10 @@
 import 'package:ai_drink/store/auth_slice.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
+
   @override
   State<AuthPage> createState() => _AuthPageState();
 }

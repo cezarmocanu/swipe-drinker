@@ -4,7 +4,6 @@ import 'package:ai_drink/pages/swiper_page/swiper_page.dart';
 import 'package:ai_drink/store/auth_slice.dart';
 import 'package:ai_drink/store/card_slice.dart';
 import 'package:flutter/material.dart';
-import 'package:platform_device_id/platform_device_id.dart';
 import 'package:provider/provider.dart';
 
 void main() {
