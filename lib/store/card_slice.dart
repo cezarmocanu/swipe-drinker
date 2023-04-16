@@ -75,6 +75,8 @@ class CardSlice extends ChangeNotifier {
     } else if (x <= -delta) {
       return CardStatus.dislike;
     }
+
+    return null;
   }
 
   void like() {
