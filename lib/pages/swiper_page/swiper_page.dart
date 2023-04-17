@@ -18,8 +18,9 @@ class _SwiperPageState extends State<SwiperPage> {
         body: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.all(16),
-          child: Stack(
-            children: cardSlice.drinks
+          child: Stack(children: [
+            
+            ...cardSlice.drinks
                 .map(
                   (drink) => SwiperCard(
                     drink: drink,
@@ -27,7 +28,7 @@ class _SwiperPageState extends State<SwiperPage> {
                   ),
                 )
                 .toList(),
-          ),
+          ]),
         ),
       ),
     );
